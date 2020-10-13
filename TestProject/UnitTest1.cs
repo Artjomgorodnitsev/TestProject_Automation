@@ -77,77 +77,118 @@ namespace Selenium_Demo
             /*using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Support.UI;
+using OpenQA.Selenium.Interactions;
 using System;
+using System.Threading;
 
-namespace Selenium_Demo
+namespace NUnitTestProjectVytasHub
 {
-    class Selenium_Demo
+    public class Tests
     {
-        String test_url = "http://prelive.aptimea.com/";
-
         IWebDriver driver;
-
+        String test_url = "http://prelive.aptimea.com/form/questionnaire"; 
+        private readonly Random _random = new Random();
+    
         [SetUp]
-        public void start_Browser()
+        public void start_browser()
         {
-            // Local Selenium WebDriver
             driver = new FirefoxDriver();
             driver.Manage().Window.Maximize();
         }
 
-
-
         [Test]
-        public void test1()
+        public void test_page1()
         {
             driver.Url = test_url;
-
-            System.Threading.Thread.Sleep(2000);
-
             driver.Navigate().GoToUrl("http://prelive.aptimea.com/form/questionnaire");
 
+            //IWebElement searchText = driver.FindElement(By.CssSelector("[name = 'q']"));
+            //searchText.SendKeys("LambdaTest");
+
+            IWebElement sButton2 = driver.FindElement(By.XPath("//button[@class='agree-button eu-cookie-compliance-secondary-button']"));
+            sButton2.Click();
             
 
-            IWebElement btn = driver.FindElement(By.CssSelector(".eu-cookie-compliance-secondary-button"));
-            btn.Click();
-            IWebElement radio1 = driver.FindElement(By.Id("edit-je-suis-0"));
-            radio1.Click();
-            SelectElement select = new SelectElement(driver.FindElement(By.Id("edit-je-suis-ne-e-en-annee-year")));
-            int i = 5;
-            select.SelectByIndex(i);
-            IWebElement radio2 = driver.FindElement(By.Id("edit-je-fais-du-sport-chaque-semaine-0"));
-            radio2.Click();
-            IWebElement radio3 = driver.FindElement(By.Id("edit-je-suis-2-0"));
-            radio3.Click();
-            IWebElement text1 = driver.FindElement(By.CssSelector("[name = 'mes_traitements_medicaux_sont']"));
-            text1.SendKeys("None");
-            IWebElement text2 = driver.FindElement(By.CssSelector("[name='user_weight']"));
-            text2.SendKeys("68");
-            IWebElement text3 = driver.FindElement(By.CssSelector("[name='user_height']"));
-            text3.SendKeys("183");
-            IWebElement radio4 = driver.FindElement(By.Id("edit-je-vis-0"));
-            radio4.Click();
-            IWebElement text4 = driver.FindElement(By.CssSelector("[name='j_ai_enfants_nombre_']"));
-            text4.SendKeys("0");
-            IWebElement radio5 = driver.FindElement(By.Id("edit-patient-goals-28"));
-            radio5.Click();
-            System.Threading.Thread.Sleep(2000);
-            IWebElement btn2 = driver.FindElement(By.Id("edit-wizard-next"));
-            btn2.Submit();
-            System.Threading.Thread.Sleep(2000);
-            IWebElement radio6 = driver.FindElement(By.Id("edit-fatigue-surtout-matinale-difficultes-a-demarrer-1--eO-CN2r4S_k"));
-            radio6.Click();
-            System.Threading.Thread.Sleep(1000000);
+            for (int a = 0; a < 10; a++)
+            {
+                Thread.Sleep(2500);
 
-            Console.WriteLine("Test Passed");
+
+
+
+                var sRadio = driver.FindElements(By.XPath("//div[@class='fieldset-wrapper']"));
+                for (int i = 0; i < sRadio.Count; i++)
+                {
+                    var els = sRadio[i].FindElements(By.XPath(".//input[@type='radio']"));
+                    if(els.Count >= 2)
+                    {
+                        try { els[_random.Next(0, els.Count)].Click(); } catch (Exception) { }
+                    }
+                }
+
+
+
+
+                var sText = driver.FindElements(By.XPath("//input[@type='text']"));
+                for (int i = 0; i < sText.Count; i++)
+                {
+                    try { sText[i].Click(); sText[i].SendKeys("LambdaTest"); } catch (Exception) { }
+                }
+                var sTextArea = driver.FindElements(By.XPath("//textarea"));
+                for (int i = 0; i < sTextArea.Count; i++)
+                {
+                    try { sTextArea[i].Click(); sTextArea[i].SendKeys("LambdaTest"); } catch (Exception) { }
+                }
+                var sNum = driver.FindElements(By.XPath("//input[@type='number']"));
+                for (int i = 0; i < sNum.Count; i++)
+                {
+                    try { sNum[i].Click(); sNum[i].SendKeys("1"); } catch (Exception) { }
+                }
+                var sSelect = driver.FindElements(By.XPath("//select"));
+                for (int i = 0; i < sNum.Count; i++)
+                {
+                    try { sSelect[i].Click(); sSelect[i].FindElements(By.XPath(".//*"))[2].Click(); } catch (Exception) { }
+                }
+                IWebElement sButton = driver.FindElement(By.XPath("//*[@value='Suivant']"));
+                try { sButton.Click(); } catch (Exception) { }
+            }
+
+            Thread.Sleep(2500);
+
+            IWebElement sButton3 = driver.FindElement(By.XPath("//*[@value='Finaliser']"));
+            try { sButton3.Click(); } catch (Exception) { }
+
+            Thread.Sleep(2500);
+
+            IWebElement sButton4 = driver.FindElement(By.XPath("//a[@href='/user/login']"));
+            try { sButton4.Click(); } catch (Exception) { }
+
+            Thread.Sleep(2500);
+
+            var sText1 = driver.FindElement(By.XPath("//input[@type='text']"));
+            try { sText1.Click(); sText1.SendKeys("klassivend870@gmail.com"); } catch (Exception) { }
+
+            var sText2 = driver.FindElement(By.XPath("//input[@type='password']"));
+            try { sText2.Click(); sText2.SendKeys("123123"); } catch (Exception) { }
+
+            Thread.Sleep(100);
+
+            IWebElement sButton5 = driver.FindElement(By.XPath("//*[@value='Se connecter']"));
+            try { sButton5.Click(); } catch (Exception) { }
+
+
+
+
+
+
+
+
+            Thread.Sleep(100000);
         }
-
-
         [TearDown]
         public void close_Browser()
         {
-            //driver.Quit();
+            driver.Quit();
         }
     }
 }*/
