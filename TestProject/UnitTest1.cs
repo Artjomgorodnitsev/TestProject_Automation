@@ -31,7 +31,7 @@ namespace Selenium_Demo
 
             driver.Navigate().GoToUrl("http://prelive.aptimea.com/form/questionnaire");
 
-            
+
 
             IWebElement btn = driver.FindElement(By.CssSelector(".eu-cookie-compliance-secondary-button"));
             btn.Click();
@@ -60,8 +60,16 @@ namespace Selenium_Demo
             IWebElement btn2 = driver.FindElement(By.Id("edit-wizard-next"));
             btn2.Submit();
             System.Threading.Thread.Sleep(2000);
-            IWebElement radio6 = driver.FindElement(By.Id("edit-fatigue-surtout-matinale-difficultes-a-demarrer-1--eO-CN2r4S_k"));
+            IWebElement radio6 = driver.FindElement(By.CssSelector("[name = 'fatigue_surtout_matinale_difficultes_a_demarrer']"));
             radio6.Click();
+            IWebElement radio7 = driver.FindElement(By.CssSelector("[name = 'j_ai_des_reveils_nocturnes_frequents_ou_precoces']"));
+            radio7.Click();
+            IWebElement radio8 = driver.FindElement(By.CssSelector("[name = 'difficulte_d_endormissement']"));
+            radio8.Click();
+            IWebElement radio9 = driver.FindElement(By.CssSelector("[name = 'j_ai_l_impression_de_ne_pas_dormir_profondement_d_avoir_un_somme']"));
+            radio9.Click();
+            IWebElement radio10 = driver.FindElement(By.CssSelector("[name = 'je_suis_souvent_somnolent_fatigue_apres_les_repas']"));
+            radio10.Click();
             System.Threading.Thread.Sleep(1000000);
 
             Console.WriteLine("Test Passed");
@@ -71,7 +79,7 @@ namespace Selenium_Demo
         [TearDown]
         public void close_Browser()
         {
-            //driver.Quit();
+            driver.Quit();
         }
     }
 }
