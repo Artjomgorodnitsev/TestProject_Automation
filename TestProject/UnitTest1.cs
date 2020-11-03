@@ -76,16 +76,16 @@ namespace NUnitTestProjectVytasHub
 
             Thread.Sleep(2500);
 
-            var sText1 = driver.FindElement(By.XPath("//input[@type='text']"));
-            try { sText1.Click(); sText1.SendKeys("-@gmail.com"); } catch (Exception) { }
+            var txt1 = driver.FindElement(By.XPath("//input[@type='text']"));
+            try { txt1.Click(); txt1.SendKeys("-@gmail.com"); } catch (Exception) { }
 
-            var sText2 = driver.FindElement(By.XPath("//input[@type='password']"));
-            try { sText2.Click(); sText2.SendKeys("-"); } catch (Exception) { }
+            var txt2 = driver.FindElement(By.XPath("//input[@type='password']"));
+            try { txt2.Click(); txt2.SendKeys("-"); } catch (Exception) { }
 
             Thread.Sleep(100);
 
-            IWebElement sButton5 = driver.FindElement(By.XPath("//*[@value='Se connecter']"));
-            try { sButton5.Click(); } catch (Exception) { }
+            IWebElement btnn = driver.FindElement(By.XPath("//*[@value='Se connecter']"));
+            try { btnn.Click(); } catch (Exception) { }
 
             Thread.Sleep(100000);
         }
